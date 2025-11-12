@@ -8,5 +8,6 @@ public interface Sequence {
      * si elle est terminée.
      * @return une string, éventuellement nulle.
      */
+	
     String ligneSuivante();
 }
