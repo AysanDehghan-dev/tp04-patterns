@@ -72,6 +72,29 @@ public class Element extends Node{
 
     @Override
     public String toXML() {
-        throw new UnsupportedOperationException("à écrire");       
+        StringBuilder sb = new StringBuilder();
+        
+        // Ouvre la balise
+        sb.append("<").append(tag);
+        
+        // Ajoute les attributs (déjà triés alphabétiquement par TreeMap)
+        for (String attrName : getDefinedAttributes()) {
+            String attrValue = XMLHelper.protectAttributeValue(getAttributeValue(attrName));
+            sb.append(" ").append(attrName).append("=\"").append(attrValue).append("\"");
+        }
+        
+        // Toujours fermer avec > et </tag>
+        sb.append(">");
+        
+        // Ajoute les enfants récursivement
+        for (Node child : children) {
+            sb.append(child.toXML());
+        }
+        
+        // Ferme la balise
+        sb.append("</").append(tag).append(">");
+        
+        return sb.toString();
     }
+  
 }

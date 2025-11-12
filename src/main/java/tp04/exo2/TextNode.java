@@ -27,7 +27,7 @@ public class TextNode extends Node {
 
    @Override
    public String toXML() {
-      throw new UnsupportedOperationException("à écrire");
+	   return XMLHelper.protectText(text);
    }
    
    
